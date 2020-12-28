@@ -45,10 +45,4 @@ COPY Makefile /Makefile
 
 ENTRYPOINT ["make", "-C", "/"]
 
-LABEL "com.github.actions.name"="Infrastructure as automation"
-LABEL "com.github.actions.description"="Upper automated terraform infrastructure orchestrator"
-LABEL "com.github.actions.icon"="robot"
-LABEL "com.github.actions.color"="blue"
-LABEL "repository"="https://github.com/UpperGit/terraform-modules"
-LABEL "homepage"="https://github.com/UpperGit/terraform-modules"
-LABEL "maintainer"="https://github.com/UpperGit"
+LABEL org.opencontainers.image.source https://github.com/metacron/terraform-action

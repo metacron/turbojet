@@ -1,0 +1,28 @@
+name: 'Infrastructure as automation'
+description: 'Upper automated terraform infrastructure orchestrator'
+inputs:
+  terragrunt_options:
+    description: 'Terragrunt additional options'
+    required: true
+    default: --terragrunt-debug
+  path:
+    description: 'Which directory to use as context'
+    required: true
+    default: ''
+  gitconfig:
+    description: 'Git config to use SSH redirections and provide authentication'
+    required: false
+    default: |
+      [url "https://git@github.com"]
+        insteadOf = "ssh://git@github.com"
+      [url "https://YOUR_PERSONAL_ACCESS_TOKEN@github.com"]
+        insteadOf = "ssh://private@github.com"
+outputs: {}
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - terragrunt_apply
+    - CONTEXT_PATH=${{ inputs.context_path }}
+    - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}
+    - GITCONFIG=${{ inputs.gitconfig }}

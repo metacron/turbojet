@@ -6,7 +6,7 @@ inputs:
     required: true
     default: --terragrunt-debug
   path:
-    description: 'Which directory to use as context'
+    description: 'Which directory to use as context (the pwd will change to this path, relative to the root of your repository)'
     required: true
     default: ''
   gitconfig:
@@ -23,6 +23,6 @@ runs:
   image: 'Dockerfile'
   args:
     - terragrunt_apply
-    - CONTEXT_PATH=${{ inputs.context_path }}
+    - CONTEXT_PATH=${{ inputs.path }}
     - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}
     - GITCONFIG=${{ inputs.gitconfig }}

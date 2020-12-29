@@ -1,8 +1,8 @@
 name: 'Infrastructure as automation'
 description: 'Upper automated terraform infrastructure orchestrator'
 inputs:
-  terragrunt_options:
-    description: 'Terragrunt additional options'
+  terragrunt_option:
+    description: 'Terragrunt additional option'
     required: true
     default: --terragrunt-debug
   path:
@@ -22,8 +22,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - make
-    - terragrunt_apply
-    - CONTEXT_PATH=${{ inputs.path }}
-    - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}
-    - GITCONFIG=${{ inputs.gitconfig }}
+    - terragrunt
+    - apply-all
+    - --terragrunt-non-interactive
+    - ${{ inputs.terragrunt_options }}

@@ -7,7 +7,7 @@ RUN \
 	# Update
 	apt-get update -y && \
 	# Install dependencies
-	apt-get install make unzip wget git ssh -y
+	apt-get install unzip wget git ssh -y
 
 ################################
 # InstalENTRYPOINTl Terraform
@@ -45,11 +45,10 @@ RUN mkdir -p /workspace
 
 WORKDIR /workspace
 
-COPY Makefile /workspace/Makefile
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["make"]
+CMD ["terragrunt"]
 
 LABEL org.opencontainers.image.source https://github.com/metacron/terraform-action

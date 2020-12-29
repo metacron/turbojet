@@ -22,7 +22,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - terragrunt
     - apply-all
     - --terragrunt-non-interactive
     - ${{ inputs.terragrunt_options }}

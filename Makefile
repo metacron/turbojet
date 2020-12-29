@@ -2,9 +2,6 @@ CONTEXT_PATH ?=
 TERRAGRUNT_OPTIONS ?= --terragrunt-debug
 GITCONFIG ?= 
 
-# Custom SSH private key
-# SSH_PRIVATE_KEY ?= 
-
 all:
 
 .PHONY: gitconfig terragrunt_apply
@@ -19,4 +16,6 @@ gitconfig:
 
 terragrunt_apply: gitconfig
 	cd "$(CONTEXT_PATH)/" || exit 1; \
+	ls -lah; \
+	pwd; \
 	terragrunt apply-all --terragrunt-non-interactive $(TERRAGRUNT_OPTIONS) || exit 1

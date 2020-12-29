@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-echo "$GITCONFIG" > ~/.gitconfig
+echo "$INPUT_GITCONFIG" > ~/.gitconfig
 
-cd "${CONTEXT_PATH}/" || exit 1
+cd "${INPUT_PATH}/" || exit 1
 
 pwd
 ls -lah

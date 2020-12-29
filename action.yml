@@ -22,6 +22,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - make
     - terragrunt_apply
     - CONTEXT_PATH=${{ inputs.path }}
     - TERRAGRUNT_OPTIONS=${{ inputs.terragrunt_options }}

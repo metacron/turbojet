@@ -41,8 +41,12 @@ RUN \
 	# Check that it's installed
 	terragrunt --version
 
-COPY Makefile /Makefile
+RUN mkdir -p /workspace
 
-ENTRYPOINT ["make", "-C", "/"]
+COPY Makefile /workspace/Makefile
+
+WORKDIR /workspace
+
+ENTRYPOINT ["make", "-C", "/workspace"]
 
 LABEL org.opencontainers.image.source https://github.com/metacron/terraform-action

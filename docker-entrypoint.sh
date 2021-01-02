@@ -1,11 +1,12 @@
 #!/bin/bash
 
-echo "$INPUT_GITCONFIG" > ~/.gitconfig
+if [ -z "${INPUT_GITCONFIG}" ]; then
+  INPUT_GITCONFIG="[url \"https://git@github.com\"]
+        insteadOf = \"ssh://git@github.com\"
+"
+fi
 
-ls -lah
-
-echo "helloworld"
-echo "$INPUT_GITCONFIG"
+echo "${INPUT_GITCONFIG}" > ~/.gitconfig
 
 cd "${INPUT_PATH}/" || exit 1
 

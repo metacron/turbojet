@@ -2,15 +2,21 @@ FROM debian:stable-slim
 
 ARG TERRAFORM_VERSION=0.13.5
 ARG TERRAGRUNT_VERSION=0.25.5
+ARG PYTHON_VERSION=3.8.2
+ARG PYTHON_EXECUTABLE_VERSION=3.8
+
+ENV PATH="/root/.local/bin:${PATH}"
 
 RUN \
 	# Update
 	apt-get update -y && \
-	# Install dependencies
-	apt-get install unzip wget git ssh -y
+	# Install general dependencies
+	apt-get install -y unzip wget git ssh && \
+	# Install Python dependencies
+	apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev
 
 ################################
-# InstalENTRYPOINTl Terraform
+# Instal Terraform
 ################################
 
 # Download terraform for linux
@@ -40,6 +46,39 @@ RUN \
 	chmod +x /usr/local/bin/terragrunt && \
 	# Check that it's installed
 	terragrunt --version
+
+################################
+# Install Python and pip
+################################
+
+# Download terragrunt for linux
+RUN wget --progress=dot:mega https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tar.xz
+
+RUN \
+	# Extract
+	tar -xf Python-${PYTHON_VERSION}.tar.xz && \
+	# Enter directory, configure, build, install
+	cd Python-${PYTHON_VERSION} && \
+	./configure --enable-optmizations && \
+	make -j 4 && \
+	make altinstall && \
+	# Symbolic link to "python" command
+	ln -s /usr/local/bin/python${PYTHON_EXECUTABLE_VERSION} /usr/local/bin/python && \
+	python --version
+
+# Install pip
+RUN \
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+	python get-pip.py && \
+	python -m pip install --upgrade pip setuptools wheel
+
+################################
+# Install Ansible
+################################
+
+RUN \
+	python -m pip install ansible && \
+	ansible --version
 
 RUN mkdir -p /workspace
 

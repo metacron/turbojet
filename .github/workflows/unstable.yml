@@ -2,6 +2,9 @@ name: Unstable release channel (unstable.yml)
 
 on:
   push:
+    paths:
+      - "Dockerfile"
+      - "docker-entrypoint.sh"
     branches:
       - main
 

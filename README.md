@@ -16,7 +16,6 @@ The technology stack is **Terraform, Terragrunt, Ansible**. Versions can be foun
 **Table of contents**
 
 - [Turbojet](#turbojet)
-  - [Concept](#concept)
   - [Environment variables](#environment-variables)
     - [`CHANGE_DIR`](#change_dir)
     - [`GITCONFIG`](#gitconfig)
@@ -24,10 +23,6 @@ The technology stack is **Terraform, Terragrunt, Ansible**. Versions can be foun
     - [As a GitHub Actions step](#as-a-github-actions-step)
     - [As a local installation replacement](#as-a-local-installation-replacement)
     - [As a Kubernetes Job](#as-a-kubernetes-job)
-
-## Concept
-
-The main goal of the project is to create a NoOps experience with infrastructure orchestration. If a thing is not infrastructure as code (state declaration) it must be infrastructure as automation (state transition trigger).
 
 ## Environment variables
 

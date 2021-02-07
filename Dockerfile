@@ -4,8 +4,11 @@ ARG TERRAFORM_VERSION=0.13.5
 ARG TERRAGRUNT_VERSION=0.25.5
 ARG PYTHON_VERSION=3.8.2
 ARG PYTHON_EXECUTABLE_VERSION=3.8
+ARG ANSIBLE_VERSION=2.10.6
 
 ENV PATH="/root/.local/bin:${PATH}"
+ENV CHANGE_DIR="/workspace"
+ENV GITCONFIG=""
 
 RUN \
 	# Update
@@ -77,7 +80,7 @@ RUN \
 ################################
 
 RUN \
-	python -m pip install ansible && \
+	python -m pip install "ansible==${ANSIBLE_VERSION}" && \
 	ansible --version
 
 RUN mkdir -p /workspace
@@ -90,4 +93,4 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["terragrunt"]
 
-LABEL org.opencontainers.image.source https://github.com/metacron/terraform-action
+LABEL org.opencontainers.image.source https://github.com/metacron/turbojet

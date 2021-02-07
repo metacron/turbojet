@@ -39,7 +39,7 @@ jobs:
             push: true
             context: "."
             platforms: linux/amd64,linux/arm64
-            tags: ghcr.io/metacron/terraform-action:unstable,ghcr.io/metacron/terraform-action:latest
+            tags: ghcr.io/metacron/turbojet:unstable,ghcr.io/metacron/turbojet:latest
 
-        - name: Image digest (metacron/terraform-action:unstable)
+        - name: Image digest (metacron/turbojet:unstable)
           run: echo ${{ steps.docker_build.outputs.digest }}

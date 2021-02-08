@@ -1,17 +1,15 @@
 # Turbojet
 
-A repository to generate engines (container images) to provision/orchestrate infrastructure and automate pipelines/configuration management processes.
+Engine (container image) to provision/orchestrate infrastructure and automate pipelines/configuration management processes.
 
 ![Turbojet Engine](doc/assets/images/turbojet_engine.png "Turbojet Engine")
 
 - One container image, use it everywhere as a [GitHub Actions step](#as-a-github-actions-step), [local installation replacement](#as-a-local-installation-replacement) or [Kubernetes Job](#as-a-kubernetes-job)
 - MIT License
 
-The technology stack is **Terraform, Terragrunt, Ansible**. Versions can be found in [Dockerfile](Dockerfile).
+Technology stack: **Terraform, Terragrunt, Ansible**. Versions can be found in [Dockerfile](Dockerfile).
 
 > :bulb: **You can customize the version args and build your own image.**
-
---------------------
 
 **Table of contents**
 
@@ -35,6 +33,13 @@ A directory to use as current working directory before executing the container c
 ### `GITCONFIG`
 
 Optional gitconfig file content, useful for private repository authentication when the terragrunt/terraform module source is a git URI. Default:
+
+```
+[url "https://git@github.com"]
+    insteadOf = "ssh://git@github.com"
+```
+
+Enabling private repositories access can be done as the example below:
 
 ```
 [url "https://git@github.com"]

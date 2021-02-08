@@ -33,6 +33,12 @@ jobs:
             tags: ${{ env.IMAGE_TAGS }}
             dockerfiles: |
               ./Dockerfile
+            build-args: |
+              TERRAFORM_VERSION=0.13.5
+              TERRAGRUNT_VERSION=0.25.5
+              PYTHON_VERSION=3.8.2
+              PYTHON_EXECUTABLE_VERSION=3.8
+              ANSIBLE_VERSION=2.10.6
 
         - name: Push To Registry
           id: push-to-registry
